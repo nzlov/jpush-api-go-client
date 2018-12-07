@@ -19,21 +19,21 @@ func NewSchedule(name string, enabled bool, push *PayLoad) *Schedule {
 		Push:    push,
 	}
 }
-func (s *Schedule) SingleTrigger(t time.Time) {
+func (s *Schedule) SingleTrigger(t string) {
 	s.Trigger = map[string]interface{}{
 		"single": map[string]interface{}{
-			"time": t.Format("2006-01-02 15:04:05"),
+			"time": t,
 		},
 	}
 
 }
 
-func (s *Schedule) PeriodicalTrigger(start time.Time, end time.Time, time time.Time, timeUnit string, frequency int, point []string) {
+func (s *Schedule) PeriodicalTrigger(start time.Time, end time.Time, t string, timeUnit string, frequency int, point []string) {
 	s.Trigger = map[string]interface{}{
 		"periodical": map[string]interface{}{
 			"start":     start.Format("2006-01-02 15:04:05"),
-			"end":       start.Format("2006-01-02 15:04:05"),
-			"time":      start.Format("15:04:05"),
+			"end":       end.Format("2006-01-02 15:04:05"),
+			"time":      t,
 			"time_unit": timeUnit,
 			"frequency": frequency,
 			"point":     point,
